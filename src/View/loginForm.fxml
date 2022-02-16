@@ -25,5 +25,6 @@
       </Label>
       <Button fx:id="loginButton" layoutX="200.0" layoutY="312.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="62.0" text="Login" />
       <Button fx:id="exitButton" layoutX="349.0" layoutY="312.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="62.0" text="Exit" />
+      <Label fx:id="timeLabel" layoutX="14.0" layoutY="42.0" prefHeight="17.0" prefWidth="149.0" text="Label" />
    </children>
 </AnchorPane>
