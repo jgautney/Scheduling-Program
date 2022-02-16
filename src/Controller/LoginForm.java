@@ -21,7 +21,6 @@ public class LoginForm implements Initializable{
     public Label timeLabel;
 
 
-    //ZoneId zoneid = TimeZone.getDefault().toZoneId();
     String zoneId = TimeZone.getDefault().getID();
 
     @Override
