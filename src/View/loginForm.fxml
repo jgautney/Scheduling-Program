@@ -6,25 +6,25 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginForm">
    <children>
-      <TextField fx:id="usernameTF" layoutX="226.0" layoutY="100.0" />
-      <Label layoutX="147.0" layoutY="103.0" style="-fx-border-color: grey;" text="Username">
+      <TextField fx:id="usernameTF" layoutX="226.0" layoutY="125.0" />
+      <Label fx:id="usernameLabel" alignment="CENTER" layoutX="226.0" layoutY="94.0" prefHeight="22.0" prefWidth="149.0" style="-fx-border-color: grey;" text="Username">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="passwordTF" layoutX="226.0" layoutY="169.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="147.0" layoutY="173.0" style="-fx-border-color: grey;" text="Password">
+      <TextField fx:id="passwordTF" layoutX="226.0" layoutY="207.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="226.0" layoutY="178.0" prefHeight="22.0" prefWidth="149.0" style="-fx-border-color: grey;" text="Password">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="TOP_CENTER" layoutX="278.0" layoutY="37.0" text="Login">
+      <Label fx:id="loginLabel" alignment="TOP_CENTER" layoutX="228.0" layoutY="37.0" prefHeight="27.0" prefWidth="149.0" text="Login">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="loginButton" layoutX="200.0" layoutY="312.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="62.0" text="Login" />
-      <Button fx:id="exitButton" layoutX="349.0" layoutY="312.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="62.0" text="Exit" />
+      <Button fx:id="loginButton" alignment="CENTER" layoutX="127.0" layoutY="312.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="25.0" prefWidth="99.0" text="Login" />
+      <Button fx:id="exitButton" layoutX="377.0" layoutY="312.0" mnemonicParsing="false" onAction="#onExit" prefHeight="25.0" prefWidth="99.0" text="Exit" />
       <Label fx:id="timeLabel" layoutX="14.0" layoutY="42.0" prefHeight="17.0" prefWidth="149.0" text="Label" />
    </children>
 </AnchorPane>
