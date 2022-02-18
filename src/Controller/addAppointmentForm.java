@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddAppointmentForm implements Initializable {
+public class addAppointmentForm implements Initializable {
     public TextField apptTF;
     public TextField titleTF;
     public TextField descTF;

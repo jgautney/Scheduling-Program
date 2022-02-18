@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginForm">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.loginForm">
    <children>
       <TextField fx:id="usernameTF" layoutX="226.0" layoutY="125.0" />
       <Label fx:id="usernameLabel" alignment="CENTER" layoutX="226.0" layoutY="94.0" prefHeight="22.0" prefWidth="149.0" style="-fx-border-color: grey;" text="Username">

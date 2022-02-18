@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AppointmentForm implements Initializable {
+public class appointmentForm implements Initializable {
     public Button addButton;
     public Button updateButton;
     public Button deleteButton;

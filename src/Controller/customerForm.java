@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CustomerForm implements Initializable {
+public class customerForm implements Initializable {
 
     public Button addButton;
     public Button updateButton;

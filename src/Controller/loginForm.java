@@ -18,7 +18,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
-public class LoginForm implements Initializable{
+public class loginForm implements Initializable{
     public TextField usernameTF;
     public TextField passwordTF;
     public Button loginButton;
