@@ -38,11 +38,23 @@ public class AppointmentForm implements Initializable {
     }
 
     public void onAdd(ActionEvent actionEvent) {
+        try{
+            System.out.println("To Appointment Screen!"); //placeholder FIXME
+            Parent root = FXMLLoader.load(getClass().getResource("/View/addAppointmentForm.fxml"));
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Add Appointment Form");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void onUpdate(ActionEvent actionEvent) {
     }
 
     public void onDelete(ActionEvent actionEvent) {
+        System.out.println("Appointment Deleted!"); //placeholder FIXME
     }
 }
