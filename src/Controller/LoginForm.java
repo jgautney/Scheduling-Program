@@ -49,7 +49,7 @@ public class LoginForm implements Initializable{
     public void onLogin(ActionEvent actionEvent) throws IOException {
         System.out.println("login button pressed!");
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
         Stage stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Customers");
         stage.setScene(new Scene(root, 1000, 600));

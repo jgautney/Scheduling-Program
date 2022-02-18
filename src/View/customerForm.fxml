@@ -24,13 +24,9 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <MenuButton layoutX="65.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Customers" textAlignment="CENTER">
-        <items>
-          <MenuItem fx:id="apptSelect" mnemonicParsing="false" onAction="#onSelect" text="Appointments" />
-        </items>
-      </MenuButton>
       <Button fx:id="addButton" layoutX="180.0" layoutY="552.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="25.0" prefWidth="55.0" text="Add" />
       <Button fx:id="updateButton" layoutX="470.0" layoutY="552.0" mnemonicParsing="false" onAction="#onUpdate" text="Update" />
       <Button fx:id="deleteButton" layoutX="775.0" layoutY="552.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="55.0" text="Delete" />
+      <Button fx:id="apptButton" layoutX="65.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelect" text="Appointments" />
    </children>
 </AnchorPane>

@@ -36,10 +36,10 @@ public class AddCustomerForm implements Initializable {
     public void onDivisionCombo(ActionEvent actionEvent) {
     }
 
-    public void onAdd(ActionEvent actionEvent) {//place holder text FIXME
+    public void onAdd(ActionEvent actionEvent) {
         try {
-            System.out.println("Customer Added!");
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
+            System.out.println("Customer Added!"); //place holder text FIXME
+            Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
             stage.setScene(new Scene(root, 1000, 600));
@@ -51,10 +51,10 @@ public class AddCustomerForm implements Initializable {
 
     }
 
-    public void onCancel(ActionEvent actionEvent) { // place holder text FIXME
+    public void onCancel(ActionEvent actionEvent) {
         try {
-            System.out.println("Customer Add cancelled!");
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
+            System.out.println("Customer Add cancelled!"); //place holder text FIXME
+            Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
             stage.setScene(new Scene(root, 1000, 600));
