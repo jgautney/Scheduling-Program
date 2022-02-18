@@ -1,11 +1,16 @@
 package Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 
 
@@ -41,8 +46,14 @@ public class LoginForm implements Initializable{
     }
 
 
-    public void onLogin(ActionEvent actionEvent) {
+    public void onLogin(ActionEvent actionEvent) throws IOException {
         System.out.println("login button pressed!");
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
+        Stage stage =(Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Customers");
+        stage.setScene(new Scene(root, 1000, 600));
+        stage.show();
     }
 
     public void onExit(ActionEvent actionEvent) {
