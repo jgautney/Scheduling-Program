@@ -1,6 +1,7 @@
 package Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -42,7 +43,17 @@ public class CustomerForm implements Initializable {
     }
 
     public void onUpdate(ActionEvent actionEvent) {//place holder text FIXME
-        System.out.println("To update Screen!");
+        try {
+            System.out.println("To update Screen!");
+            Parent root = FXMLLoader.load(getClass().getResource("/view/updateCustomerForm.fxml"));
+            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Update Customer");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void onDelete(ActionEvent actionEvent) {//place holder text FIXME
