@@ -6,17 +6,17 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentForm">
     <children>
-        <TableView layoutX="65.0" layoutY="65.0" prefHeight="470.0" prefWidth="870.0">
+        <TableView fx:id="appointmentDataTable" layoutX="65.0" layoutY="65.0" prefHeight="470.0" prefWidth="870.0">
             <columns>
-                <TableColumn fx:id="idCol" editable="false" prefWidth="49.0" text="ID" />
-                <TableColumn fx:id="titleCol" editable="false" prefWidth="140.0" text="Title" />
-                <TableColumn fx:id="descriptionCol" editable="false" prefWidth="129.0" text="Description" />
-                <TableColumn fx:id="typeCol" editable="false" minWidth="3.0" prefWidth="139.0" text="Type" />
-                <TableColumn fx:id="startCol" editable="false" prefWidth="100.0" text="Start" />
-                <TableColumn fx:id="endCol" editable="false" prefWidth="100.0" text="End" />
-            <TableColumn fx:id="custIdCol" prefWidth="81.0" text="Customer ID" />
-            <TableColumn fx:id="userIdCol" prefWidth="56.0" text="User ID" />
-            <TableColumn fx:id="contactIdCol" prefWidth="75.0" text="Contact ID" />
+                <TableColumn fx:id="idCol" editable="false" prefWidth="49.0" style="-fx-alignment: CENTER;" text="ID" />
+                <TableColumn fx:id="titleCol" editable="false" prefWidth="140.0" style="-fx-alignment: CENTER;" text="Title" />
+                <TableColumn fx:id="descriptionCol" editable="false" prefWidth="129.0" style="-fx-alignment: CENTER;" text="Description" />
+                <TableColumn fx:id="typeCol" editable="false" minWidth="3.0" prefWidth="139.0" style="-fx-alignment: CENTER;" text="Type" />
+                <TableColumn fx:id="startCol" editable="false" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Start" />
+                <TableColumn fx:id="endCol" editable="false" prefWidth="100.0" style="-fx-alignment: CENTER;" text="End" />
+            <TableColumn fx:id="custIdCol" prefWidth="81.0" style="-fx-alignment: CENTER;" text="Customer ID" />
+            <TableColumn fx:id="userIdCol" prefWidth="56.0" style="-fx-alignment: CENTER;" text="User ID" />
+            <TableColumn fx:id="contactIdCol" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Contact ID" />
             </columns>
         </TableView>
         <Label layoutX="387.0" layoutY="6.0" text="Appointments">

@@ -1,5 +1,6 @@
 package Controller;
 
+import DBAccess.DBAppointments;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -29,11 +31,21 @@ public class appointmentForm implements Initializable {
     public TableColumn custIdCol;
     public TableColumn userIdCol;
     public TableColumn contactIdCol;
+    public TableView appointmentDataTable;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        custIdCol.setCellValueFactory(new PropertyValueFactory<>("custID"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+        appointmentDataTable.setItems(DBAppointments.getAllAppointments());
 
     }
 
