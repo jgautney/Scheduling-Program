@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.updateAppointmentForm">
+    <children>
+        <Label layoutX="188.0" layoutY="21.0" text="Update Appointment">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="75.0" text="Appointment ID">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="125.0" text="Title">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="175.0" text="Description">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="225.0" text="Location">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="25.0" layoutY="275.0" text="Date">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="apptTF" alignment="CENTER" editable="false" layoutX="135.0" layoutY="73.0" promptText="ID " />
+        <TextField fx:id="titleTF" alignment="CENTER" layoutX="135.0" layoutY="125.0" promptText="Name" />
+        <TextField fx:id="descTF" alignment="CENTER" layoutX="135.0" layoutY="175.0" promptText="Address" />
+        <TextField fx:id="locationTF" alignment="CENTER" layoutX="135.0" layoutY="225.0" promptText="Postcal Code" />
+        <Button fx:id="updateButton" layoutX="185.0" layoutY="340.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="25.0" prefWidth="66.0" text="Update" />
+        <Button fx:id="cancelButton" layoutX="335.0" layoutY="340.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
+        <Label layoutX="350.0" layoutY="75.0" text="Start">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="startCombo" layoutX="400.0" layoutY="75.0" onAction="#onStartCombo" prefWidth="150.0" promptText="Select Start Time" />
+        <Label layoutX="350.0" layoutY="125.0" text="End">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="endCombo" layoutX="400.0" layoutY="125.0" onAction="#onEndCombo" prefWidth="150.0" promptText="Select End Time" />
+        <Label layoutX="315.0" layoutY="175.0" text="Customer ID">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="custCombo" layoutX="400.0" layoutY="175.0" onAction="#onCustCombo" prefWidth="150.0" promptText="Select Customer ID" />
+        <Label layoutX="340.0" layoutY="225.0" text="User ID">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="userCombo" layoutX="400.0" layoutY="225.0" onAction="#onUserCombo" prefWidth="150.0" promptText="Select User ID" />
+        <Label layoutX="325.0" layoutY="275.0" text="Contact ID">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="contactCombo" layoutX="400.0" layoutY="275.0" onAction="#onContactCombo" prefWidth="150.0" promptText="Select Contact ID" />
+        <DatePicker fx:id="datePicker" layoutX="135.0" layoutY="275.0" onAction="#onDatePicker" prefHeight="25.0" prefWidth="149.0" promptText="          Select Date" />
+    </children>
+</AnchorPane>
