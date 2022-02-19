@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -17,6 +18,13 @@ public class customerForm implements Initializable {
     public Button updateButton;
     public Button deleteButton;
     public Button apptButton;
+
+    public TableColumn idCol;
+    public TableColumn nameCol;
+    public TableColumn addressCol;
+    public TableColumn postalCol;
+    public TableColumn phoneCol;
+    public TableColumn divisionCol;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
