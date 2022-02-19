@@ -1,5 +1,6 @@
 package Controller;
 
+import DBAccess.DBCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,9 +28,18 @@ public class customerForm implements Initializable {
     public TableColumn postalCol;
     public TableColumn phoneCol;
     public TableColumn divisionCol;
+    public TableView customerDataTable;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        divisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+        customerDataTable.setItems(DBCustomers.getAllCustomers());
 
     }
 

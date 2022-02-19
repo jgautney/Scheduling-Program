@@ -6,14 +6,14 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.customerForm">
    <children>
-      <TableView layoutX="65.0" layoutY="65.0" prefHeight="470.0" prefWidth="870.0">
+      <TableView fx:id="customerDataTable" layoutX="65.0" layoutY="65.0" prefHeight="470.0" prefWidth="870.0">
         <columns>
-          <TableColumn fx:id="idCol" editable="false" prefWidth="49.0" text="ID" />
-          <TableColumn fx:id="nameCol" editable="false" prefWidth="140.0" text=" Name" />
-            <TableColumn fx:id="addressCol" editable="false" prefWidth="174.0" text="Address" />
-            <TableColumn fx:id="postalCol" editable="false" minWidth="3.0" prefWidth="123.0" text="Postal Code" />
-            <TableColumn fx:id="phoneCol" editable="false" prefWidth="69.0" text="Phone" />
-            <TableColumn fx:id="divisionCol" editable="false" prefWidth="94.0" text="Divison ID" />
+          <TableColumn fx:id="idCol" editable="false" prefWidth="49.0" style="-fx-alignment: CENTER;" text="ID" />
+          <TableColumn fx:id="nameCol" editable="false" prefWidth="140.0" style="-fx-alignment: CENTER;" text=" Name" />
+            <TableColumn fx:id="addressCol" editable="false" prefWidth="174.0" style="-fx-alignment: CENTER;" text="Address" />
+            <TableColumn fx:id="postalCol" editable="false" minWidth="3.0" prefWidth="123.0" style="-fx-alignment: CENTER;" text="Postal Code" />
+            <TableColumn fx:id="phoneCol" editable="false" prefWidth="69.0" style="-fx-alignment: CENTER;" text="Phone" />
+            <TableColumn fx:id="divisionCol" editable="false" prefWidth="94.0" style="-fx-alignment: CENTER;" text="Division ID" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
