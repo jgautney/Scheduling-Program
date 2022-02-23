@@ -1,6 +1,8 @@
 package Controller;
 
 import DBAccess.DBCustomers;
+import JDBC.JDBC;
+import Model.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class customerForm implements Initializable {
@@ -73,7 +77,17 @@ public class customerForm implements Initializable {
     }
 
     public void onDelete(ActionEvent actionEvent) {
-        System.out.println("Delete Customer!"); //place holder text FIXME
+        //FIXME implement warning and ask if user is sure
+        try {
+            Customers customer = (Customers) customerDataTable.getSelectionModel().getSelectedItem();
+            String sql = "DELETE FROM customers WHERE Customer_ID LIKE " + customer.getId();
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.executeUpdate();
+            customerDataTable.setItems(DBCustomers.getAllCustomers());
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void onSelect(ActionEvent actionEvent) {
