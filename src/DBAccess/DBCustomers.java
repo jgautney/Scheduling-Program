@@ -9,18 +9,18 @@ import java.sql.*;
 
 public class DBCustomers {
 
-    public static ObservableList<Customers> getAllCustomers(){
+    public static ObservableList<Customers> getAllCustomers() {
 
         ObservableList<Customers> custList = FXCollections.observableArrayList();
 
-        try{
+        try {
             String sql = "SELECT * from customers";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("Customer_ID");
                 String name = rs.getString("Customer_Name");
                 String address = rs.getString("Address");
@@ -36,4 +36,5 @@ public class DBCustomers {
         }
         return custList;
     }
+
 }

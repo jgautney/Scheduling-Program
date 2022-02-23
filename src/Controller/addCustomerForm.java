@@ -1,5 +1,7 @@
 package Controller;
 
+import DBAccess.DBCountries;
+import Model.Country;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,13 +22,14 @@ public class addCustomerForm implements Initializable {
     public TextField custAddressTF;
     public TextField custPostCodeTF;
     public TextField custPhoneTF;
-    public ComboBox countryCombo;
+    public ComboBox<Country> countryCombo;
     public ComboBox disvionCombo;
     public Button addButton;
     public Button cancelButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        countryCombo.setItems(DBCountries.getAllCountries());
 
     }
 

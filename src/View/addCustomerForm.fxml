@@ -40,7 +40,7 @@
       <TextField fx:id="custNameTF" alignment="CENTER" layoutX="125.0" layoutY="125.0" promptText="Name" />
       <TextField fx:id="custAddressTF" alignment="CENTER" layoutX="125.0" layoutY="175.0" promptText="Address" />
       <TextField fx:id="custPostCodeTF" alignment="CENTER" layoutX="125.0" layoutY="225.0" promptText="Postcal Code" />
-      <TextField fx:id="custPhoneTF" alignment="CENTER" layoutX="125.0" layoutY="275.0" promptText="Phone" />
+      <TextField fx:id="custPhoneTF" alignment="CENTER" layoutX="125.0" layoutY="275.0" promptText="xxx-xxx-xxxx" />
       <Label layoutX="325.0" layoutY="160.0" text="Country">
          <font>
             <Font size="14.0" />
