@@ -52,7 +52,7 @@
             </font>
         </Label>
         <ComboBox fx:id="countryCombo" layoutX="425.0" layoutY="155.0" onAction="#onCountryCombo" prefWidth="150.0" promptText="Select Country" />
-        <ComboBox fx:id="disvionCombo" layoutX="425.0" layoutY="210.0" onAction="#onDivisionCombo" prefWidth="150.0" promptText="Select Division ID" />
+        <ComboBox fx:id="divisionCombo" layoutX="425.0" layoutY="210.0" onAction="#onDivisionCombo" prefWidth="150.0" promptText="Select Division ID" />
         <Button fx:id="updateButton" layoutX="200.0" layoutY="340.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="25.0" text="Update" />
         <Button fx:id="cancelButton" layoutX="350.0" layoutY="340.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
     </children>

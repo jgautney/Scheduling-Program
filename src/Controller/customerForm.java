@@ -3,6 +3,7 @@ package Controller;
 import DBAccess.DBCustomers;
 import JDBC.JDBC;
 import Model.Customers;
+import Model.firstLevelDivision;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,7 +51,6 @@ public class customerForm implements Initializable {
 
     public void onAdd(ActionEvent actionEvent) {
         try {
-            System.out.println("To add screen!"); //place holder text FIXME
             Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomerForm.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Add Customer");
@@ -64,7 +64,10 @@ public class customerForm implements Initializable {
 
     public void onUpdate(ActionEvent actionEvent) {
         try {
-            System.out.println("To update Screen!"); //place holder text FIXME
+
+            Customers selectedCustomer = (Customers)customerDataTable.getSelectionModel().getSelectedItem();
+            updateCustomerForm.updateCustomer(selectedCustomer);
+
             Parent root = FXMLLoader.load(getClass().getResource("/view/updateCustomerForm.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Update Customer");
