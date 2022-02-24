@@ -1,7 +1,6 @@
 package Controller;
 
 import DBAccess.DBCountries;
-import DBAccess.DBFirstLevelDivision;
 import JDBC.JDBC;
 import Model.Country;
 import Model.Customers;
@@ -74,7 +73,14 @@ public class updateCustomerForm implements Initializable {
 
     public void onUpdate(ActionEvent actionEvent) {
         try {
-            System.out.println("Customer Updated!"); //placeholder text FIXME
+             String sql = "UPDATE customers SET Customer_Name='" + custNameTF.getText() + "', Address='" + custAddressTF.getText()
+                     + "', Postal_Code='" + custPostCodeTF.getText() + "', Phone='" + custPhoneTF.getText() + "', Division_ID='"
+                     + divisionCombo.getValue().getID() + "' WHERE Customer_ID=" + custIDTF.getText();
+
+             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+             ps.executeUpdate();
+
+
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
