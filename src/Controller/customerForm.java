@@ -3,7 +3,6 @@ package Controller;
 import DBAccess.DBCustomers;
 import JDBC.JDBC;
 import Model.Customers;
-import Model.firstLevelDivision;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
