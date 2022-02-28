@@ -32,6 +32,7 @@ public class appointmentForm implements Initializable {
     public TableColumn userIdCol;
     public TableColumn contactIdCol;
     public TableView appointmentDataTable;
+    public TableColumn dateCol;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,6 +41,7 @@ public class appointmentForm implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         custIdCol.setCellValueFactory(new PropertyValueFactory<>("custID"));

@@ -42,6 +42,6 @@ public class Customers {
         return divisionID;
     }
 
-    // add setters FIXME
+
 
 }

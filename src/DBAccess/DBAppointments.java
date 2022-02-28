@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class DBAppointments {
 
@@ -26,13 +27,14 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                String start = rs.getString("Start");
-                String end = rs.getString("End");
+                Time start = rs.getTime("Start");
+                Time end = rs.getTime("End");
+                Date date = rs.getDate("Start");
                 int custID = rs.getInt("Customer_ID");
                 int userID = rs.getInt("User_ID");
                 int contactID = rs.getInt("Contact_ID");
 
-                Appointments a = new Appointments(id, title, description, location, type, start, end, custID, userID, contactID);
+                Appointments a = new Appointments(id, title, description, location, type, start, end, date, custID, userID, contactID);
                 apptList.add(a);
             }
         } catch (SQLException throwables) {
