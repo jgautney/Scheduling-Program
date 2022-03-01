@@ -86,6 +86,9 @@ public class appointmentForm implements Initializable {
 
     public void onUpdate(ActionEvent actionEvent) {
         try{
+            Appointments selectedAppointment = (Appointments)appointmentDataTable.getSelectionModel().getSelectedItem();
+            updateAppointmentForm.updateAppointment(selectedAppointment);
+
             Parent root = FXMLLoader.load(getClass().getResource("/View/updateAppointmentForm.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Update Appointment Form");

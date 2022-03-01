@@ -94,7 +94,6 @@ public class customerForm implements Initializable {
 
     public void onSelect(ActionEvent actionEvent) {
         try{
-            System.out.println("To appointment screen!!"); //place holder text FIXME
             Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentForm.fxml"));
             Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Appointment Form");

@@ -55,8 +55,6 @@ public class addAppointmentForm implements Initializable {
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
             LocalDateTime endDateTime = LocalDateTime.of(startDate, endTime);
 
-            System.out.println(startDateTime);
-            System.out.println(endDateTime);
 
             String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) " +
                     "VALUES('" + titleTF.getText() + "', '" + descTF.getText() + "', '" + locationTF.getText() + "', '" + typeTF.getText() +

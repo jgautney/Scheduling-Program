@@ -79,5 +79,6 @@
          </font>
       </Label>
       <TextField fx:id="typeTF" alignment="CENTER" layoutX="135.0" layoutY="275.0" promptText="Type" />
+      <Label alignment="CENTER" layoutX="400.0" layoutY="104.0" prefHeight="17.0" prefWidth="150.0" text="Times listed are in EST" />
     </children>
 </AnchorPane>
