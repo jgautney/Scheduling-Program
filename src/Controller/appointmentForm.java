@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,6 +34,8 @@ public class appointmentForm implements Initializable {
     public TableColumn contactIdCol;
     public TableView appointmentDataTable;
     public TableColumn dateCol;
+    public RadioButton weekRadButton;
+    public RadioButton monthRadButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,7 +50,7 @@ public class appointmentForm implements Initializable {
         custIdCol.setCellValueFactory(new PropertyValueFactory<>("custID"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
-        appointmentDataTable.setItems(DBAppointments.getAllAppointments());
+        appointmentDataTable.setItems(DBAppointments.getByMonth());
 
     }
 
@@ -95,5 +98,36 @@ public class appointmentForm implements Initializable {
 
     public void onDelete(ActionEvent actionEvent) {
         System.out.println("Appointment Deleted!"); //placeholder FIXME
+    }
+
+    public void byWeek(ActionEvent actionEvent) {
+
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        custIdCol.setCellValueFactory(new PropertyValueFactory<>("custID"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+        appointmentDataTable.setItems(DBAppointments.getByWeek());
+
+
+    }
+
+    public void byMonth(ActionEvent actionEvent) {
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        custIdCol.setCellValueFactory(new PropertyValueFactory<>("custID"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+        appointmentDataTable.setItems(DBAppointments.getByMonth());
     }
 }

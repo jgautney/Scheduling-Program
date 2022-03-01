@@ -60,7 +60,6 @@ public class addCustomerForm implements Initializable {
             ps.executeUpdate();
 
 
-            System.out.println("Customer Added!"); //place holder text FIXME
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
@@ -75,7 +74,6 @@ public class addCustomerForm implements Initializable {
 
     public void onCancel(ActionEvent actionEvent) {
         try {
-            System.out.println("Customer Add cancelled!"); //place holder text FIXME
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");

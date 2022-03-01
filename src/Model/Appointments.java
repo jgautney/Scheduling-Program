@@ -1,7 +1,8 @@
 package Model;
 
-import java.sql.Date;
-import java.sql.Time;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class Appointments {
@@ -11,14 +12,14 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private Time start;
-    private Time end;
-    private Date date;
+    private LocalTime start;
+    private LocalTime end;
+    private LocalDate date;
     private int custID;
     private int userID;
     private int contactID;
 
-    public Appointments(int id, String title, String description, String location, String type, Time start, Time end, Date date, int custID, int userID, int contactID){
+    public Appointments(int id, String title, String description, String location, String type, LocalTime start, LocalTime end, LocalDate date, int custID, int userID, int contactID){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -52,15 +53,15 @@ public class Appointments {
         return type;
     }
 
-    public Time getStart() {
+    public LocalTime getStart() {
         return start;
     }
 
-    public Time getEnd() {
+    public LocalTime getEnd() {
         return end;
     }
 
-    public Date getDate(){
+    public LocalDate getDate(){
         return date;
     }
 

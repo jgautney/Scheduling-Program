@@ -17,6 +17,10 @@ public class Customers {
         this. phoneNumber = phoneNumber;
         this.divisionID = divisionID;
     }
+    @Override
+    public String toString(){
+        return(Integer.toString(id));
+    }
 
     public int getId(){
         return id;

@@ -11,6 +11,10 @@ public class Users {
             this.password = password;
         }
 
+        @Override
+        public String toString(){
+            return (Integer.toString(id));
+        }
         public int getId(){
             return id;
         }
@@ -19,7 +23,4 @@ public class Users {
             return name;
         }
 
-    public String getPassword() {
-        return password;
-    }
 }

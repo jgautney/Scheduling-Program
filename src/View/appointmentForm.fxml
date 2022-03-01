@@ -29,5 +29,12 @@
         <Button fx:id="updateButton" layoutX="470.0" layoutY="552.0" mnemonicParsing="false" onAction="#onUpdate" text="Update" />
         <Button fx:id="deleteButton" layoutX="775.0" layoutY="552.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="55.0" text="Delete" />
       <Button fx:id="customerButton" layoutX="65.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelect" text="Customers" />
+      <RadioButton fx:id="weekRadButton" layoutX="750.0" layoutY="25.0" mnemonicParsing="false" onAction="#byWeek" text="Week">
+         <toggleGroup>
+            <ToggleGroup fx:id="filter" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="monthRadButton" layoutX="836.0" layoutY="25.0" mnemonicParsing="false" onAction="#byMonth" selected="true" text="Month" toggleGroup="$filter" />
+      <Label layoutX="685.0" layoutY="25.0" text="Filter by:" />
     </children>
 </AnchorPane>

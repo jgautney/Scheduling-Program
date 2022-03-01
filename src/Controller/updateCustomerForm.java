@@ -94,7 +94,6 @@ public class updateCustomerForm implements Initializable {
 
     public void onCancel(ActionEvent actionEvent) {
         try {
-            System.out.println("Customer Updated cancelled!"); //placeholder text FIXME
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
