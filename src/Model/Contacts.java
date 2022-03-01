@@ -14,4 +14,7 @@ public class Contacts {
     public String toString(){
         return(Integer.toString(id));
     }
+    public int getID(){
+        return id;
+    }
 }
