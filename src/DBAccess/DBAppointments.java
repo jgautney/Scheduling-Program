@@ -6,8 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
+
 
 
 public class DBAppointments {

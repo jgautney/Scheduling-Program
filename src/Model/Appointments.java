@@ -2,7 +2,9 @@ package Model;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 
 
 public class Appointments {
@@ -75,5 +77,31 @@ public class Appointments {
 
     public int getContactID() {
         return contactID;
+    }
+
+    public LocalTime getConvertedStart(LocalTime localTime, LocalDate localDate){
+
+        LocalTime startTime = start;
+        LocalDate startDate = date;
+        LocalDateTime localStartDateTime = LocalDateTime.of(startDate, startTime);
+
+        ZoneId startZoneId = ZoneId.systemDefault();
+        ZoneId startZone = ZoneId.of("America/New_York");
+        LocalDateTime newLocalDateTime = localStartDateTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
+
+        return newLocalDateTime.toLocalTime();
+    }
+
+    public LocalTime getConvertedEnd(LocalTime localTime, LocalDate localDate){
+
+        LocalTime endTime = end;
+        LocalDate endDate = date;
+        LocalDateTime localEndDateTime = LocalDateTime.of(endDate, endTime);
+
+        ZoneId endZoneId = ZoneId.systemDefault();
+        ZoneId endZone = ZoneId.of("America/New_York");
+        LocalDateTime newLocalDateTime = localEndDateTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
+
+        return newLocalDateTime.toLocalTime();
     }
 }

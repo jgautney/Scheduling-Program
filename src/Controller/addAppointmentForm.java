@@ -17,10 +17,11 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
+
 
 
 public class addAppointmentForm implements Initializable {
@@ -41,6 +42,7 @@ public class addAppointmentForm implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         populateComboBoxes();
 
     }
@@ -52,13 +54,23 @@ public class addAppointmentForm implements Initializable {
             LocalDate startDate = datePicker.getValue();
             LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
 
+            ZoneId startZoneId = ZoneId.of("America/New_York");
+            ZoneId startZone = ZoneId.of("UTC");
+            LocalDateTime newStartDateTime = startDateTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
+
+
+
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
             LocalDateTime endDateTime = LocalDateTime.of(startDate, endTime);
 
+            ZoneId endZoneId = ZoneId.of("America/New_York");
+            ZoneId endZone = ZoneId.of("UTC");
+            LocalDateTime newEndDateTime = endDateTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
+
 
             String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) " +
-                    "VALUES('" + titleTF.getText() + "', '" + descTF.getText() + "', '" + locationTF.getText() + "', '" + typeTF.getText() +
-                            "', '" + startDateTime + "', '" + endDateTime + "', '" + custCombo.getValue().getId() + "', '" +
+                    "VALUES('" + titleTF.getText().trim() + "', '" + descTF.getText().trim() + "', '" + locationTF.getText().trim() + "', '" + typeTF.getText().trim() +
+                            "', '" + newStartDateTime + "', '" + newEndDateTime + "', '" + custCombo.getValue().getId() + "', '" +
                             userCombo.getValue().getId() + "', '" + contactCombo.getValue().getID() + "')";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
@@ -95,6 +107,7 @@ public class addAppointmentForm implements Initializable {
 
         LocalTime displayTime = (LocalTime)startCombo.getSelectionModel().getSelectedItem();
         displayTime = displayTime.plusMinutes(60);
+
         endCombo.setValue(displayTime);
 
 

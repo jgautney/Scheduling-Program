@@ -31,7 +31,7 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label layoutX="25.0" layoutY="275.0" text="Date">
+        <Label layoutX="25.0" layoutY="325.0" text="Date">
             <font>
                 <Font size="14.0" />
             </font>
@@ -40,8 +40,8 @@
         <TextField fx:id="titleTF" alignment="CENTER" layoutX="135.0" layoutY="125.0" promptText="Name" />
         <TextField fx:id="descTF" alignment="CENTER" layoutX="135.0" layoutY="175.0" promptText="Address" />
         <TextField fx:id="locationTF" alignment="CENTER" layoutX="135.0" layoutY="225.0" promptText="Postcal Code" />
-        <Button fx:id="updateButton" layoutX="185.0" layoutY="340.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="25.0" prefWidth="66.0" text="Update" />
-        <Button fx:id="cancelButton" layoutX="335.0" layoutY="340.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
+        <Button fx:id="updateButton" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="25.0" prefWidth="66.0" text="Update" />
+        <Button fx:id="cancelButton" layoutX="335.0" layoutY="365.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
         <Label layoutX="350.0" layoutY="75.0" text="Start">
             <font>
                 <Font size="14.0" />
@@ -53,26 +53,31 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <ComboBox fx:id="endCombo" layoutX="400.0" layoutY="125.0" onAction="#onEndCombo" prefWidth="150.0" promptText="Select End Time" />
+        <ComboBox fx:id="endCombo" layoutX="400.0" layoutY="125.0" prefWidth="150.0" promptText="Select End Time" />
         <Label layoutX="315.0" layoutY="175.0" text="Customer ID">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <ComboBox fx:id="custCombo" layoutX="400.0" layoutY="175.0" onAction="#onCustCombo" prefWidth="150.0" promptText="Select Customer ID" />
+        <ComboBox fx:id="custCombo" layoutX="400.0" layoutY="175.0" prefWidth="150.0" promptText="Select Customer ID" />
         <Label layoutX="340.0" layoutY="225.0" text="User ID">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <ComboBox fx:id="userCombo" layoutX="400.0" layoutY="225.0" onAction="#onUserCombo" prefWidth="150.0" promptText="Select User ID" />
+        <ComboBox fx:id="userCombo" layoutX="400.0" layoutY="225.0" prefWidth="150.0" promptText="Select User ID" />
         <Label layoutX="325.0" layoutY="275.0" text="Contact ID">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <ComboBox fx:id="contactCombo" layoutX="400.0" layoutY="275.0" onAction="#onContactCombo" prefWidth="150.0" promptText="Select Contact ID" />
-        <DatePicker fx:id="datePicker" layoutX="135.0" layoutY="275.0" onAction="#onDatePicker" prefHeight="25.0" prefWidth="149.0" promptText="          Select Date" />
+        <ComboBox fx:id="contactCombo" layoutX="400.0" layoutY="275.0" prefWidth="150.0" promptText="Select Contact ID" />
+        <DatePicker fx:id="datePicker" layoutX="135.0" layoutY="325.0" onAction="#onDatePicker" prefHeight="25.0" prefWidth="149.0" promptText="          Select Date" />
       <Label alignment="CENTER" layoutX="400.0" layoutY="104.0" prefHeight="17.0" prefWidth="150.0" text="Times listed are in EST" />
+      <Label layoutX="25.0" layoutY="275.0" text="Type">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="typeTF" alignment="CENTER" layoutX="135.0" layoutY="275.0" promptText="Type" />
     </children>
 </AnchorPane>
