@@ -72,7 +72,7 @@
             </font>
         </Label>
         <ComboBox fx:id="contactCombo" layoutX="400.0" layoutY="275.0" prefWidth="150.0" promptText="Select Contact ID" />
-        <DatePicker fx:id="datePicker" layoutX="135.0" layoutY="325.0" onAction="#onDatePicker" prefHeight="25.0" prefWidth="149.0" promptText="          Select Date" />
+        <DatePicker fx:id="datePicker" layoutX="135.0" layoutY="325.0" prefHeight="25.0" prefWidth="149.0" promptText="          Select Date" />
       <Label alignment="CENTER" layoutX="400.0" layoutY="104.0" prefHeight="17.0" prefWidth="150.0" text="Times listed are in EST" />
       <Label layoutX="25.0" layoutY="275.0" text="Type">
          <font>

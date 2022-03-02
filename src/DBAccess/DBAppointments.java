@@ -17,8 +17,7 @@ public class DBAppointments {
         ObservableList<Appointments> monthList = FXCollections.observableArrayList();
 
         try{
-            //String sql = "SELECT * from appointments WHERE MONTH(start) = MONTH(NOW())";
-            String sql = "SELECT * FROM appointments";
+            String sql = "SELECT * from appointments WHERE MONTH(start) = MONTH(NOW())";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 

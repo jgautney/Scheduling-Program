@@ -130,7 +130,6 @@ public class updateAppointmentForm implements Initializable {
             endCombo.getItems().add(start);
             start = start.plusMinutes(60);
         }
-
     }
 
     public void populateComboBoxes () {

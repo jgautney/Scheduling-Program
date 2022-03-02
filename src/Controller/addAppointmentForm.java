@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 
 
@@ -57,8 +55,6 @@ public class addAppointmentForm implements Initializable {
             ZoneId startZoneId = ZoneId.of("America/New_York");
             ZoneId startZone = ZoneId.of("UTC");
             LocalDateTime newStartDateTime = startDateTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
-
-
 
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
             LocalDateTime endDateTime = LocalDateTime.of(startDate, endTime);
