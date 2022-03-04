@@ -81,22 +81,19 @@ public class updateAppointmentForm implements Initializable {
         try{
             LocalTime startTime = (LocalTime) startCombo.getSelectionModel().getSelectedItem();
             LocalDate startDate = datePicker.getValue();
-            LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-
-            ZoneId startZoneId = ZoneId.of("America/New_York");
-            ZoneId startZone = ZoneId.of("UTC");
-            LocalDateTime newStartDateTime = startDateTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
+            LocalDateTime sdt = LocalDateTime.of(startDate, startTime);
 
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
-            LocalDateTime endDateTime = LocalDateTime.of(startDate, endTime);
+            LocalDateTime edt = LocalDateTime.of(startDate, endTime);
 
-            ZoneId endZoneId = ZoneId.of("America/New_York");
-            ZoneId endZone = ZoneId.of("UTC");
-            LocalDateTime newEndDateTime = endDateTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
+            ZoneId zoneId = ZoneId.of("America/New_York");
+            ZoneId newZone = ZoneId.of("UTC");
+            LocalDateTime newSDT = sdt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
+            LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
 
             String sql = "UPDATE appointments SET Title = '" + titleTF.getText() + "', Description = '" + descTF.getText() + "', Location = '" + locationTF.getText() + "', " +
-                    "Type = '" + typeTF.getText() + "', Start = '" + newStartDateTime + "', End = '" + newEndDateTime + "', Customer_ID = '" + custCombo.getValue() + "', " +
+                    "Type = '" + typeTF.getText() + "', Start = '" + newSDT+ "', End = '" + newEDT + "', Customer_ID = '" + custCombo.getValue() + "', " +
                     "User_ID = '" + userCombo.getValue() + "', Contact_ID = '" + contactCombo.getValue() + "' " +
                     " WHERE Appointment_ID=" + apptTF.getText();
 

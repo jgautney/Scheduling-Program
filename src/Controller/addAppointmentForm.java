@@ -76,11 +76,6 @@ public class addAppointmentForm implements Initializable {
 
             for (Appointments appointments : aTime) {
                 if (appointments.getDate().isEqual(startDate)) {
-                    System.out.println("Dates Match!!");
-                    System.out.println(appointments.getStart());
-                    System.out.println(LocalTime.from(csdt));
-                    System.out.println(appointments.getEnd());
-                    System.out.println(LocalTime.from(cedt));
 
                     if ((appointments.getStart().isAfter(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && appointments.getStart().isBefore(LocalTime.from(cedt))) {
                         throw new Exception();
