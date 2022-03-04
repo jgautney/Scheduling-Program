@@ -100,7 +100,6 @@ public class updateAppointmentForm implements Initializable {
 
             for (Appointments appointments : aTime){
                 if(appointments.getId() !=  Integer.parseInt(apptTF.getText())){
-                    System.out.println("ID's do not match!");
                     if (appointments.getDate().isEqual(startDate)) {
 
                         if ((appointments.getStart().isAfter(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && appointments.getStart().isBefore(LocalTime.from(cedt))) {
