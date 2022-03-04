@@ -14,6 +14,8 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
+    private LocalDateTime ldtStart;
+    private LocalDateTime ldtEnd;
     private LocalTime start;
     private LocalTime end;
     private LocalDate date;
@@ -78,6 +80,7 @@ public class Appointments {
     public int getContactID() {
         return contactID;
     }
+
 
     public LocalTime getConvertedStart(LocalTime localTime, LocalDate localDate){
 

@@ -119,7 +119,7 @@ public class updateAppointmentForm implements Initializable {
 
     public void onStartCombo(ActionEvent actionEvent) {
         LocalTime displayTime = (LocalTime)startCombo.getSelectionModel().getSelectedItem();
-        displayTime = displayTime.plusMinutes(60);
+        displayTime = displayTime.plusMinutes(30);
         endCombo.setValue(displayTime);
 
 
@@ -128,7 +128,7 @@ public class updateAppointmentForm implements Initializable {
 
         while(start.isBefore(end.plusSeconds(1))){
             endCombo.getItems().add(start);
-            start = start.plusMinutes(60);
+            start = start.plusMinutes(30);
         }
     }
 
@@ -140,7 +140,8 @@ public class updateAppointmentForm implements Initializable {
 
             while (start.isBefore(end.plusSeconds(1))) {
                 startCombo.getItems().add(start);
-                start = start.plusMinutes(60);
+                endCombo.getItems().add(start);
+                start = start.plusMinutes(30);
             }
             userCombo.setItems(DBUsers.getAllUsers());
             custCombo.setItems(DBCustomers.getAllCustomers());
