@@ -1,23 +1,23 @@
 package Controller;
 
+import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
 import JDBC.JDBC;
 import Model.Appointments;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -91,6 +91,30 @@ public class updateAppointmentForm implements Initializable {
             LocalDateTime newSDT = sdt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
             LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
+            ObservableList<Appointments> aTime = DBAppointments.getAllAppointments((Integer) custCombo.getValue());
+
+            ZoneId dtz = ZoneId.systemDefault();
+            ZoneId ctz = ZoneId.of("UTC");
+            LocalDateTime csdt = newSDT.atZone(ctz).withZoneSameInstant(dtz).toLocalDateTime();
+            LocalDateTime cedt = newEDT.atZone(ctz).withZoneSameInstant(dtz).toLocalDateTime();
+
+            for (Appointments appointments : aTime){
+                if(appointments.getId() !=  Integer.parseInt(apptTF.getText())){
+                    System.out.println("ID's do not match!");
+                    if (appointments.getDate().isEqual(startDate)) {
+
+                        if ((appointments.getStart().isAfter(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && appointments.getStart().isBefore(LocalTime.from(cedt))) {
+                            throw new Exception();
+                        }
+                        if(appointments.getEnd().isAfter(LocalTime.from(csdt)) && (appointments.getEnd().isBefore(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                            throw new Exception();
+                        }
+                        if((appointments.getStart().isBefore(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && (appointments.getEnd().isAfter(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                            throw new Exception();
+                        }
+                    }
+                }
+            }
 
             String sql = "UPDATE appointments SET Title = '" + titleTF.getText() + "', Description = '" + descTF.getText() + "', Location = '" + locationTF.getText() + "', " +
                     "Type = '" + typeTF.getText() + "', Start = '" + newSDT+ "', End = '" + newEDT + "', Customer_ID = '" + custCombo.getValue() + "', " +
@@ -106,8 +130,20 @@ public class updateAppointmentForm implements Initializable {
             stage.setScene(new Scene(root, 1000, 600));
             stage.show();
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        catch(RuntimeException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Please fill out all fields");
+            alert.show();
+        }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Appointments can not overlap!");
+            alert.show();
         }
     }
     public static void updateAppointment(Appointments sa) {
