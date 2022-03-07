@@ -51,12 +51,12 @@ public class updateAppointmentForm implements Initializable {
             descTF.setText(selectedAppointment.getDescription());
             typeTF.setText(selectedAppointment.getType());
             locationTF.setText(selectedAppointment.getLocation());
-            startCombo.setValue(selectedAppointment.getConvertedStart(selectedAppointment.getStart(), selectedAppointment.getDate()));
-            endCombo.setValue(selectedAppointment.getConvertedEnd(selectedAppointment.getEnd(), selectedAppointment.getDate()));
+            startCombo.setValue(selectedAppointment.getConvertedStart(selectedAppointment.getStart()));
+            endCombo.setValue(selectedAppointment.getConvertedEnd(selectedAppointment.getEnd()));
             custCombo.setValue(selectedAppointment.getCustID());
             userCombo.setValue(selectedAppointment.getUserID());
             contactCombo.setValue(selectedAppointment.getContactID());
-            datePicker.setValue(selectedAppointment.getDate());
+            datePicker.setValue(selectedAppointment.getStart().toLocalDate());
         }
         catch (Exception e){
             e.printStackTrace();
@@ -91,7 +91,7 @@ public class updateAppointmentForm implements Initializable {
             LocalDateTime newSDT = sdt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
             LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
-            ObservableList<Appointments> aTime = DBAppointments.getAllAppointments((Integer) custCombo.getValue());
+            ObservableList<Appointments> aTime = DBAppointments.getApptByID((Integer) custCombo.getValue());
 
             ZoneId dtz = ZoneId.systemDefault();
             ZoneId ctz = ZoneId.of("UTC");
@@ -100,15 +100,15 @@ public class updateAppointmentForm implements Initializable {
 
             for (Appointments appointments : aTime){
                 if(appointments.getId() !=  Integer.parseInt(apptTF.getText())){
-                    if (appointments.getDate().isEqual(startDate)) {
+                    if (appointments.getStart().toLocalDate().isEqual(startDate)) {
 
-                        if ((appointments.getStart().isAfter(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && appointments.getStart().isBefore(LocalTime.from(cedt))) {
+                        if ((appointments.getStart().isAfter(csdt) || appointments.getStart().equals(csdt) && appointments.getStart().isBefore(cedt))) {
                             throw new Exception();
                         }
-                        if(appointments.getEnd().isAfter(LocalTime.from(csdt)) && (appointments.getEnd().isBefore(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                        if(appointments.getEnd().isAfter(csdt) && (appointments.getEnd().isBefore(csdt) || appointments.getEnd().equals(cedt))){
                             throw new Exception();
                         }
-                        if((appointments.getStart().isBefore(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && (appointments.getEnd().isAfter(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                        if((appointments.getStart().isBefore(csdt) || appointments.getStart().equals(csdt)) && (appointments.getEnd().isAfter(cedt) || appointments.getEnd().equals(cedt))){
                             throw new Exception();
                         }
                     }
@@ -151,7 +151,7 @@ public class updateAppointmentForm implements Initializable {
 
     public void onStartCombo(ActionEvent actionEvent) {
         LocalTime displayTime = (LocalTime)startCombo.getSelectionModel().getSelectedItem();
-        displayTime = displayTime.plusMinutes(30);
+        displayTime = displayTime.plusMinutes(15);
         endCombo.setValue(displayTime);
 
 
@@ -160,7 +160,7 @@ public class updateAppointmentForm implements Initializable {
 
         while(start.isBefore(end.plusSeconds(1))){
             endCombo.getItems().add(start);
-            start = start.plusMinutes(30);
+            start = start.plusMinutes(15);
         }
     }
 
@@ -173,7 +173,7 @@ public class updateAppointmentForm implements Initializable {
             while (start.isBefore(end.plusSeconds(1))) {
                 startCombo.getItems().add(start);
                 endCombo.getItems().add(start);
-                start = start.plusMinutes(30);
+                start = start.plusMinutes(15);
             }
             userCombo.setItems(DBUsers.getAllUsers());
             custCombo.setItems(DBCustomers.getAllCustomers());

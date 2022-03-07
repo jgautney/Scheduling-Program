@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import java.util.TimeZone;
 
 
@@ -26,7 +27,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         JDBC.openConnection();
-        //TimeZone tz = TimeZone.getTimeZone("America/New_York");
+        //TimeZone tz = TimeZone.getTimeZone("America/New_York"); //FIXME remove, for testing only
         //TimeZone.setDefault(tz);
         launch(args);
         JDBC.closeConnection();

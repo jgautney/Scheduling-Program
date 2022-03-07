@@ -1,9 +1,7 @@
 package Model;
 
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
 
 
@@ -14,16 +12,13 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private LocalDateTime ldtStart;
-    private LocalDateTime ldtEnd;
-    private LocalTime start;
-    private LocalTime end;
-    private LocalDate date;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private int custID;
     private int userID;
     private int contactID;
 
-    public Appointments(int id, String title, String description, String location, String type, LocalTime start, LocalTime end, LocalDate date, int custID, int userID, int contactID){
+    public Appointments(int id, String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, int custID, int userID, int contactID){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -31,7 +26,6 @@ public class Appointments {
         this.type = type;
         this.start = start;
         this.end = end;
-        this.date = date;
         this.custID = custID;
         this.userID = userID;
         this.contactID = contactID;
@@ -57,17 +51,14 @@ public class Appointments {
         return type;
     }
 
-    public LocalTime getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public LocalTime getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public LocalDate getDate(){
-        return date;
-    }
 
     public int getCustID() {
         return custID;
@@ -81,30 +72,28 @@ public class Appointments {
         return contactID;
     }
 
+    @Override
+    public String toString(){
+        return("Time: " + start);
+    }
 
-    public LocalTime getConvertedStart(LocalTime localTime, LocalDate localDate){
+    public LocalDateTime getConvertedStart(LocalDateTime localDateTime){
 
-        LocalTime startTime = start;
-        LocalDate startDate = date;
-        LocalDateTime localStartDateTime = LocalDateTime.of(startDate, startTime);
+        LocalDateTime startTime = start;
 
         ZoneId startZoneId = ZoneId.systemDefault();
         ZoneId startZone = ZoneId.of("America/New_York");
-        LocalDateTime newLocalDateTime = localStartDateTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
 
-        return newLocalDateTime.toLocalTime();
+        return startTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
     }
 
-    public LocalTime getConvertedEnd(LocalTime localTime, LocalDate localDate){
+    public LocalDateTime getConvertedEnd(LocalDateTime localdateTime){
 
-        LocalTime endTime = end;
-        LocalDate endDate = date;
-        LocalDateTime localEndDateTime = LocalDateTime.of(endDate, endTime);
+        LocalDateTime endTime = end;
 
         ZoneId endZoneId = ZoneId.systemDefault();
         ZoneId endZone = ZoneId.of("America/New_York");
-        LocalDateTime newLocalDateTime = localEndDateTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
 
-        return newLocalDateTime.toLocalTime();
+        return endTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
     }
 }

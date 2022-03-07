@@ -12,12 +12,11 @@
                 <TableColumn fx:id="titleCol" editable="false" prefWidth="111.0" style="-fx-alignment: CENTER;" text="Title" />
                 <TableColumn fx:id="descriptionCol" editable="false" prefWidth="115.0" style="-fx-alignment: CENTER;" text="Description" />
                 <TableColumn fx:id="typeCol" editable="false" minWidth="3.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Type" />
-            <TableColumn fx:id="dateCol" prefWidth="83.0" style="-fx-alignment: CENTER;" text="Date" />
-                <TableColumn fx:id="startCol" editable="false" prefWidth="96.0" style="-fx-alignment: CENTER;" text="Start" />
-                <TableColumn fx:id="endCol" editable="false" prefWidth="72.0" style="-fx-alignment: CENTER;" text="End" />
-            <TableColumn fx:id="custIdCol" editable="false" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="Customer ID" />
-            <TableColumn fx:id="userIdCol" minWidth="0.0" prefWidth="61.0" style="-fx-alignment: CENTER;" text="User ID" />
-            <TableColumn fx:id="contactIdCol" minWidth="0.0" prefWidth="94.0" style="-fx-alignment: CENTER;" text="Contact ID" />
+                <TableColumn fx:id="startCol" editable="false" prefWidth="130.0" style="-fx-alignment: CENTER;" text="Start" />
+                <TableColumn fx:id="endCol" editable="false" prefWidth="115.0" style="-fx-alignment: CENTER;" text="End" />
+            <TableColumn fx:id="custIdCol" editable="false" prefWidth="76.0" resizable="false" style="-fx-alignment: CENTER;" text="Customer ID" />
+            <TableColumn fx:id="userIdCol" minWidth="0.0" prefWidth="82.0" style="-fx-alignment: CENTER;" text="User ID" />
+            <TableColumn fx:id="contactIdCol" minWidth="0.0" prefWidth="89.0" style="-fx-alignment: CENTER;" text="Contact ID" />
             </columns>
         </TableView>
         <Label layoutX="387.0" layoutY="6.0" text="Appointments">

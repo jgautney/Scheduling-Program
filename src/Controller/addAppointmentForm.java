@@ -66,7 +66,7 @@ public class addAppointmentForm implements Initializable {
             LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
 
-             ObservableList<Appointments> aTime = DBAppointments.getAllAppointments(custCombo.getValue().getId());
+             ObservableList<Appointments> aTime = DBAppointments.getApptByID(custCombo.getValue().getId());
 
              ZoneId dtz = ZoneId.systemDefault();
              ZoneId ctz = ZoneId.of("UTC");
@@ -75,15 +75,15 @@ public class addAppointmentForm implements Initializable {
 
 
             for (Appointments appointments : aTime) {
-                if (appointments.getDate().isEqual(startDate)) {
+                if (appointments.getStart().toLocalDate().isEqual(startDate)) {
 
-                    if ((appointments.getStart().isAfter(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && appointments.getStart().isBefore(LocalTime.from(cedt))) {
+                    if ((appointments.getStart().isAfter(csdt) || appointments.getStart().equals(csdt)) && appointments.getStart().isBefore(cedt)) {
                         throw new Exception();
                     }
-                    if(appointments.getEnd().isAfter(LocalTime.from(csdt)) && (appointments.getEnd().isBefore(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                    if(appointments.getEnd().isAfter(csdt) && (appointments.getEnd().isBefore(csdt) || appointments.getEnd().equals(cedt))){
                         throw new Exception();
                     }
-                    if((appointments.getStart().isBefore(LocalTime.from(csdt)) || appointments.getStart().equals(LocalTime.from(csdt))) && (appointments.getEnd().isAfter(LocalTime.from(cedt)) || appointments.getEnd().equals(LocalTime.from(cedt)))){
+                    if((appointments.getStart().isBefore(csdt) || appointments.getStart().equals(csdt)) && (appointments.getEnd().isAfter(cedt) || appointments.getEnd().equals(cedt))){
                         throw new Exception();
                     }
                 }

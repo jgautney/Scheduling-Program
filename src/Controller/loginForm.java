@@ -1,7 +1,10 @@
 package Controller;
 
+import DBAccess.DBAppointments;
 import JDBC.JDBC;
 
+import Model.Appointments;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +22,8 @@ import java.net.URL;
 
 import java.sql.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -57,17 +62,35 @@ public class loginForm implements Initializable{
         String inputPassword = passwordTF.getText();
 
         try{
-            String sql = "SELECT User_Name, Password from users";
+            String sql = "SELECT User_Name, Password, User_ID from users";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-
             while (rs.next()) {
                 String userName = rs.getString("User_Name");
                 String password = rs.getString("Password");
+                int userID = rs.getInt("User_ID");
+
+                ObservableList<Appointments> appTime = DBAppointments.getAllAppointments(userID);
+
+                LocalDateTime loginTime = LocalDateTime.now();
+                ZoneId dtz = ZoneId.of("America/New_York");
+                ZoneId ctz = ZoneId.of("GMT");
+                LocalDateTime clt = loginTime.atZone(ctz).withZoneSameInstant(dtz).toLocalDateTime();
 
                 if (Objects.equals(inputName, userName) && Objects.equals(inputPassword, password)) {
+                    System.out.println(clt);
+                    System.out.println(LocalDateTime.now());
+                    for (Appointments appointments : appTime) {
+                        if (appointments.getStart().isBefore(clt.plusMinutes(15))) {
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Information");
+                            alert.setContentText("You have an appointment soon " + appointments.getStart());
+                            alert.show();
+                        }
+                    }
 
                     Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
                     Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -75,7 +98,7 @@ public class loginForm implements Initializable{
                     stage.setScene(new Scene(root, 1000, 600));
                     stage.show();
                     return;
-                    }
+                        }
                 }
 
                 // If no successful login, show alert box
@@ -83,6 +106,7 @@ public class loginForm implements Initializable{
                 alert.setTitle("Error Dialog");
                 alert.setContentText(rb.getString("match"));
                 alert.show();
+
         }
         catch (SQLException | IOException e){
             e.printStackTrace();
