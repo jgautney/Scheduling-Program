@@ -133,10 +133,14 @@ public class updateAppointmentForm implements Initializable {
             throwables.printStackTrace();
         }
         catch(RuntimeException e){
+            e.printStackTrace();
+            /*
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setContentText("Please fill out all fields");
             alert.show();
+
+             */
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

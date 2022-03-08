@@ -2,6 +2,7 @@ package Model;
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 
@@ -74,26 +75,26 @@ public class Appointments {
 
     @Override
     public String toString(){
-        return("Time: " + start);
+        return(type);
     }
 
-    public LocalDateTime getConvertedStart(LocalDateTime localDateTime){
+    public LocalTime getConvertedStart(LocalDateTime localDateTime){
 
         LocalDateTime startTime = start;
 
         ZoneId startZoneId = ZoneId.systemDefault();
         ZoneId startZone = ZoneId.of("America/New_York");
 
-        return startTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime();
+        return startTime.atZone(startZoneId).withZoneSameInstant(startZone).toLocalDateTime().toLocalTime();
     }
 
-    public LocalDateTime getConvertedEnd(LocalDateTime localdateTime){
+    public LocalTime getConvertedEnd(LocalDateTime localdateTime){
 
         LocalDateTime endTime = end;
 
         ZoneId endZoneId = ZoneId.systemDefault();
         ZoneId endZone = ZoneId.of("America/New_York");
 
-        return endTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime();
+        return endTime.atZone(endZoneId).withZoneSameInstant(endZone).toLocalDateTime().toLocalTime();
     }
 }
