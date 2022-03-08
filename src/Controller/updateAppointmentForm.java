@@ -5,6 +5,7 @@ import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
 import JDBC.JDBC;
+import Main.LocalDateTimeInterface;
 import Model.Appointments;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -80,16 +81,17 @@ public class updateAppointmentForm implements Initializable {
     public void onUpdate(ActionEvent actionEvent) {
         try{
             LocalTime startTime = (LocalTime) startCombo.getSelectionModel().getSelectedItem();
-            LocalDate startDate = datePicker.getValue();
-            LocalDateTime sdt = LocalDateTime.of(startDate, startTime);
-
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
-            LocalDateTime edt = LocalDateTime.of(startDate, endTime);
+            LocalDate startDate = datePicker.getValue();
+
+            LocalDateTimeInterface timeStart = (t, d) -> LocalDateTime.of(d, t);
+
+            LocalDateTimeInterface timeEnd = (t, d) -> LocalDateTime.of(d, t);
 
             ZoneId zoneId = ZoneId.of("America/New_York");
             ZoneId newZone = ZoneId.of("UTC");
-            LocalDateTime newSDT = sdt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
-            LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
+            LocalDateTime newSDT = timeStart.convertLocalDateTime(startTime, startDate).atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
+            LocalDateTime newEDT = timeEnd.convertLocalDateTime(endTime, startDate).atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
             ObservableList<Appointments> aTime = DBAppointments.getApptByID((Integer) custCombo.getValue());
 
@@ -133,14 +135,10 @@ public class updateAppointmentForm implements Initializable {
             throwables.printStackTrace();
         }
         catch(RuntimeException e){
-            e.printStackTrace();
-            /*
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setContentText("Please fill out all fields");
             alert.show();
-
-             */
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

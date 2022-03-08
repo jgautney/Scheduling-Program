@@ -4,6 +4,7 @@ import JDBC.JDBC;
 import DBAccess.DBAppointments;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
+import Main.CountCustomerInterface;
 import Model.Contacts;
 
 import javafx.collections.FXCollections;
@@ -23,8 +24,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 
 public class Reports implements Initializable {
@@ -49,8 +48,17 @@ public class Reports implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         contactCombo.setItems(DBContacts.getAllContacts());
-        countCustomers();
         populateMonthComboBox();
+
+        CountCustomerInterface number = () ->{
+            int counter = 0;
+            for(int i = 0; i < DBCustomers.getAllCustomers().size(); i++){
+                counter += 1;
+            }
+            return counter;
+        }; // lambda for counting total number of customers
+
+        custNumberLabel.setText(String.valueOf(number.countCustomer()));
 
         apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -82,15 +90,6 @@ public class Reports implements Initializable {
         stage.setTitle("Appointment Form");
         stage.setScene(new Scene(root, 1000, 600));
         stage.show();
-    }
-
-    public void countCustomers(){
-        int counter = 0; // count total number of customers
-
-        for(int i = 0; i < DBCustomers.getAllCustomers().size(); i++){
-            counter += 1;
-        }
-        custNumberLabel.setText(String.valueOf(counter));
     }
 
     public void populateMonthComboBox(){

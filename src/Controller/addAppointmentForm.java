@@ -5,6 +5,7 @@ import JDBC.JDBC;
 import DBAccess.DBContacts;
 import DBAccess.DBCustomers;
 import DBAccess.DBUsers;
+import Main.LocalDateTimeInterface;
 import Model.Appointments;
 import Model.Contacts;
 import Model.Customers;
@@ -54,16 +55,18 @@ public class addAppointmentForm implements Initializable {
 
         try{
             LocalTime startTime = (LocalTime) startCombo.getSelectionModel().getSelectedItem();
-            LocalDate startDate = datePicker.getValue();
-            LocalDateTime sdt = LocalDateTime.of(startDate, startTime);
-
             LocalTime endTime = (LocalTime) endCombo.getSelectionModel().getSelectedItem();
-            LocalDateTime edt = LocalDateTime.of(startDate, endTime);
+            LocalDate startDate = datePicker.getValue();
+
+            LocalDateTimeInterface timeStart = (t, d) -> LocalDateTime.of(d, t);
+
+            LocalDateTimeInterface timeEnd = (t, d) -> LocalDateTime.of(d, t);
+
 
             ZoneId zoneId = ZoneId.of("America/New_York");
             ZoneId newZone = ZoneId.of("UTC");
-            LocalDateTime newSDT = sdt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
-            LocalDateTime newEDT = edt.atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
+            LocalDateTime newSDT = timeStart.convertLocalDateTime(startTime, startDate).atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
+            LocalDateTime newEDT = timeEnd.convertLocalDateTime(endTime, startDate).atZone(zoneId).withZoneSameInstant(newZone).toLocalDateTime();
 
 
              ObservableList<Appointments> aTime = DBAppointments.getApptByID(custCombo.getValue().getId());
