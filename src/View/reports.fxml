@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Reports">
+   <children>
+      <Label layoutX="440.0" layoutY="30.0" text="Reports">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <ComboBox fx:id="contactCombo" layoutX="704.0" layoutY="83.0" onAction="#onContactSelect" prefWidth="150.0" />
+      <TableView fx:id="contactDataTable" layoutX="65.0" layoutY="110.0" prefHeight="200.0" prefWidth="870.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Apt. ID" />
+          <TableColumn prefWidth="75.0" text="Title" />
+            <TableColumn prefWidth="75.0" text="Description" />
+            <TableColumn prefWidth="75.0" text="Start" />
+            <TableColumn prefWidth="75.0" text="End" />
+            <TableColumn prefWidth="75.0" text="Customer ID" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="307.0" layoutY="387.0" text="Customer Appointment by type and month">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="monthCombo" layoutX="218.0" layoutY="426.0" onAction="#onMonth" prefWidth="150.0" />
+      <ComboBox fx:id="typeCombo" layoutX="395.0" layoutY="426.0" onAction="#onType" prefWidth="150.0" />
+      <Label fx:id="monthtypeLabel" layoutX="590.0" layoutY="430.0" text="Select month and appointment type" />
+      <Label layoutX="307.0" layoutY="511.0" text="Total number of Customers:" />
+      <Label fx:id="custNumberLabel" layoutX="470.0" layoutY="511.0" text="#" />
+      <Button fx:id="backButton" layoutX="444.0" layoutY="561.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
+   </children>
+</AnchorPane>

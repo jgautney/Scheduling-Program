@@ -147,7 +147,7 @@ public class addAppointmentForm implements Initializable {
 
         while(start.isBefore(end.plusSeconds(1))){
             endCombo.getItems().add(start);
-            start = start.plusMinutes(30);
+            start = start.plusMinutes(15);
         }
     }
 
@@ -159,7 +159,7 @@ public class addAppointmentForm implements Initializable {
             while (start.isBefore(end.plusSeconds(1))) {
                 startCombo.getItems().add(start);
                 endCombo.getItems().add(start);
-                start = start.plusMinutes(30);
+                start = start.plusMinutes(15);
             }
             userCombo.setItems(DBUsers.getAllUsers());
             custCombo.setItems(DBCustomers.getAllCustomers());

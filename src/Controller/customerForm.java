@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,11 +68,20 @@ public class customerForm implements Initializable {
             Customers selectedCustomer = (Customers)customerDataTable.getSelectionModel().getSelectedItem();
             updateCustomerForm.updateCustomer(selectedCustomer);
 
-            Parent root = FXMLLoader.load(getClass().getResource("/view/updateCustomerForm.fxml"));
-            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Update Customer");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
+            if( selectedCustomer == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Please select a Customer");
+                alert.show();
+            }
+            else{
+
+                Parent root = FXMLLoader.load(getClass().getResource("/view/updateCustomerForm.fxml"));
+                Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("Update Customer");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+            }
         }
         catch(Exception e){
             e.printStackTrace();

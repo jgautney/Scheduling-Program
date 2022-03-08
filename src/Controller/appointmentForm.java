@@ -8,14 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -39,6 +37,7 @@ public class appointmentForm implements Initializable {
     public TableView appointmentDataTable;
     public RadioButton weekRadButton;
     public RadioButton monthRadButton;
+    public Button reportButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -87,11 +86,19 @@ public class appointmentForm implements Initializable {
             Appointments selectedAppointment = (Appointments)appointmentDataTable.getSelectionModel().getSelectedItem();
             updateAppointmentForm.updateAppointment(selectedAppointment);
 
-            Parent root = FXMLLoader.load(getClass().getResource("/View/updateAppointmentForm.fxml"));
-            Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Update Appointment Form");
-            stage.setScene(new Scene(root, 600, 400));
-            stage.show();
+            if(selectedAppointment == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Please select an Appointment");
+                alert.show();
+            }
+            else{
+                Parent root = FXMLLoader.load(getClass().getResource("/View/updateAppointmentForm.fxml"));
+                Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("Update Appointment Form");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+            }
         }
         catch(Exception e){
             e.printStackTrace();
@@ -141,5 +148,13 @@ public class appointmentForm implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
         appointmentDataTable.setItems(DBAppointments.getByMonth());
+    }
+
+    public void onReport(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/reports.fxml"));
+        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Reports Form");
+        stage.setScene(new Scene(root, 1000, 600));
+        stage.show();
     }
 }

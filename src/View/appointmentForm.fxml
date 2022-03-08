@@ -35,5 +35,6 @@
       </RadioButton>
       <RadioButton fx:id="monthRadButton" layoutX="836.0" layoutY="25.0" mnemonicParsing="false" onAction="#byMonth" selected="true" text="Month" toggleGroup="$filter" />
       <Label layoutX="685.0" layoutY="25.0" text="Filter by:" />
+      <Button fx:id="reportButton" layoutX="154.0" layoutY="33.0" mnemonicParsing="false" onAction="#onReport" text="Reports" />
     </children>
 </AnchorPane>
