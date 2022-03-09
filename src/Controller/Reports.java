@@ -137,7 +137,6 @@ public class Reports implements Initializable {
          catch (SQLException throwables){
              throwables.printStackTrace();
          }
-        System.out.println(count);
         return String.valueOf(count);
     }
 }

@@ -46,7 +46,6 @@ public class updateAppointmentForm implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            populateComboBoxes();
             apptTF.setText(String.valueOf(selectedAppointment.getId()));
             titleTF.setText(selectedAppointment.getTitle());
             descTF.setText(selectedAppointment.getDescription());
@@ -58,6 +57,7 @@ public class updateAppointmentForm implements Initializable {
             userCombo.setValue(selectedAppointment.getUserID());
             contactCombo.setValue(selectedAppointment.getContactID());
             datePicker.setValue(selectedAppointment.getStart().toLocalDate());
+            populateComboBoxes();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -169,7 +169,7 @@ public class updateAppointmentForm implements Initializable {
     public void populateComboBoxes () {
         try {
 
-            LocalTime start = LocalTime.of(8,0);
+            LocalTime start = LocalTime.of(8, 0);
             LocalTime end = LocalTime.of(21, 0);
 
             while (start.isBefore(end.plusSeconds(1))) {
