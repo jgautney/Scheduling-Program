@@ -23,6 +23,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for update customer form
+ */
 public class updateCustomerForm implements Initializable {
     public TextField custIDTF;
     public TextField custNameTF;
@@ -36,7 +39,12 @@ public class updateCustomerForm implements Initializable {
 
     private static Customers selectedCustomer = null;
 
-
+    /**
+     * Populates the text fields and combo boxes with data carried over the selected customer
+     *
+     * uses an array that should always contain one element in order to set the Country and
+     * Division combo boxes appropriately, while only displaying divisions based on the country selected
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -63,14 +71,17 @@ public class updateCustomerForm implements Initializable {
 
     }
 
+    /**
+     * sets items of division combo box depending on country selected
+     */
     public void onCountryCombo(ActionEvent actionEvent) {
         divisionCombo.setValue(null);
         divisionCombo.setItems(getAssociatedDivisions());
     }
 
-    public void onDivisionCombo(ActionEvent actionEvent) {
-    }
-
+    /**
+     * Updates the customer in the customers table of the database with the values added/changed
+     */
     public void onUpdate(ActionEvent actionEvent) {
         try {
              String sql = "UPDATE customers SET Customer_Name='" + custNameTF.getText() + "', Address='" + custAddressTF.getText()
@@ -92,6 +103,9 @@ public class updateCustomerForm implements Initializable {
         }
     }
 
+    /**
+     * cancels updating customer and returns to the previous screen
+     */
     public void onCancel(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
@@ -104,10 +118,19 @@ public class updateCustomerForm implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * method used to carry customer data over from the customer table view in the customer form controller
+     * @param sc is the selected customer
+     */
     public static void updateCustomer(Customers sc) {
         selectedCustomer = sc;
     }
 
+    /**
+     * Method for getting the division name and ID from the selected customer
+     * @return returns observable list of division Names
+     */
     public static ObservableList<firstLevelDivision> getDivision(){
         ObservableList<firstLevelDivision> divisionList = FXCollections.observableArrayList();
 
@@ -130,6 +153,12 @@ public class updateCustomerForm implements Initializable {
         return divisionList;
     }
 
+    /**
+     * Method uses the selected customer division ID to get the country that contains that division
+     *
+     * @return returns an observable list of the country associated with the division ID,
+     * so it can be set to the country combo box
+     */
     public static ObservableList<Country> getAssociatedCountry(){
         ObservableList<Country> countryList = FXCollections.observableArrayList();
         try{
@@ -153,6 +182,12 @@ public class updateCustomerForm implements Initializable {
         return countryList;
     }
 
+    /**
+     * Gets all divisions associated with the selected country.  Only divisions associated with that country will de displayed.
+     * For example: if US is selected only US states will be displayed
+     *
+     * @return returns an observable list of the associated divisions
+     */
     public ObservableList<firstLevelDivision> getAssociatedDivisions(){
         ObservableList<firstLevelDivision> divisionList = FXCollections.observableArrayList();
 

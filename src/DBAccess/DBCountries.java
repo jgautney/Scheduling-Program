@@ -5,10 +5,17 @@ import Model.Country;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 import java.sql.*;
 
+/**
+ * Database access class for Countries table in the database
+ */
 public class DBCountries {
+
+    /**
+     * Method for grabbing all countries
+     * @return returns observable list of all countries
+     */
     public static ObservableList<Country> getAllCountries() {
 
         ObservableList<Country> countryList = FXCollections.observableArrayList();

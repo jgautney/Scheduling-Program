@@ -31,6 +31,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * Controller for login form
+ */
+
 public class loginForm implements Initializable{
     public TextField usernameTF;
     public TextField passwordTF;
@@ -49,6 +53,11 @@ public class loginForm implements Initializable{
 
     public LocalDateTime loginTime = LocalDateTime.now();
 
+    /**
+     * Displays the time label text field depending on the location of the user.
+     *
+     * displays all text in French if user's system is set to the French language
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     timeLabel.setText(String.valueOf(zoneId));
@@ -60,7 +69,16 @@ public class loginForm implements Initializable{
 
     }
 
-
+    /**
+     *Checks the entered username and password against usernames and passwords in the database.
+     * If a match is found moves to the next screen.  If no match is found an error message is displayed.
+     *
+     * Displays a message stating whether an appointment is scheduled in 15 minutes for the logged-in user
+     *
+     * Error message is also displayed in French if French is the chosen language of the system.
+     *
+     * records both successful and unsuccessful login attempts to login_activity.txt in the root directory
+     */
     public void onLogin(ActionEvent actionEvent) throws IOException {
         String inputName = usernameTF.getText();
         String inputPassword = passwordTF.getText();
@@ -117,7 +135,7 @@ public class loginForm implements Initializable{
                         }
                 }
 
-                // If no successful login, show alert box
+                // If unsuccessful login, show alert box
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
                 alert.setContentText(rb.getString("match"));
@@ -131,6 +149,9 @@ public class loginForm implements Initializable{
         }
     }
 
+    /**
+     * Exits the program if pressed
+     */
     public void onExit(ActionEvent actionEvent) {
         JDBC.closeConnection();
         System.exit(0);

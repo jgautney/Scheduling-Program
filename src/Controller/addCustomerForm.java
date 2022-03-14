@@ -22,6 +22,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for add customer form
+ */
 public class addCustomerForm implements Initializable {
 
     public TextField custIDTF;
@@ -34,13 +37,19 @@ public class addCustomerForm implements Initializable {
     public Button addButton;
     public Button cancelButton;
 
-
+    /**
+     *initialize method.  Contains code to populate the Country combo box
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryCombo.setItems(DBCountries.getAllCountries());
 
     }
 
+    /**
+     * Uses getAssociatedDivisions method to populate the first level division combo box depending on what country was selected.
+     * for example: if U.S. is selected in country combo box only US states will be in the first level division combo box
+     */
     public void onCountryCombo(ActionEvent actionEvent) {
         try{
             divisionCombo.setItems(getAssociatedDivisions());
@@ -50,7 +59,9 @@ public class addCustomerForm implements Initializable {
         }
     }
 
-
+    /**
+     * Adds Customer to the customers table in the database.  Contains the necessary SQL to achieve that.
+     */
     public void onAdd(ActionEvent actionEvent) {
         try {
             String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID)" +
@@ -72,6 +83,9 @@ public class addCustomerForm implements Initializable {
 
     }
 
+    /**
+     * Cancels adding customer and returns to previous screen
+     */
     public void onCancel(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
@@ -84,6 +98,11 @@ public class addCustomerForm implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method for grabbing first level divisions depending on what is selected in the country combo box
+     * @return returns observable list of associated divisions
+     */
     public ObservableList<firstLevelDivision> getAssociatedDivisions(){
         ObservableList<firstLevelDivision> divisionList = FXCollections.observableArrayList();
 

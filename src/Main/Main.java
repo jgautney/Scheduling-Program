@@ -7,10 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @author Josh Gautney
+ * Date: March 14, 2022
+ * Class: C195 Software II: Advanced Java Concepts
+ */
 
-import java.util.TimeZone;
-
-
+/**
+ * Main
+ */
 public class Main extends Application {
 
 
@@ -27,8 +32,6 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         JDBC.openConnection();
-        //TimeZone tz = TimeZone.getTimeZone("America/New_York"); //FIXME remove, for testing only
-        //TimeZone.setDefault(tz);
         launch(args);
         JDBC.closeConnection();
     }

@@ -3,6 +3,9 @@ package JDBC;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * JDBC Class for connecting to the database
+ */
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";

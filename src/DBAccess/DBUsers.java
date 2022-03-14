@@ -7,8 +7,15 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+/**
+ * Database access class for users table from the database
+ */
 public class DBUsers {
 
+    /**
+     * Method for grabbing all users from the database
+     * @return returns observable list of all users
+     */
     public static ObservableList<Users> getAllUsers(){
 
         ObservableList<Users> userList = FXCollections.observableArrayList();

@@ -8,10 +8,16 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.*;
 
-
+/**
+ * Database access class for appointments
+ */
 
 public class DBAppointments {
 
+    /**
+     *Metod for getting appointments by month
+     * @return returns an observable array list of appointments of current month
+     */
     public static ObservableList<Appointments> getByMonth(){
 
         ObservableList<Appointments> monthList = FXCollections.observableArrayList();
@@ -44,6 +50,10 @@ public class DBAppointments {
         return monthList;
     }
 
+    /**
+     * Method for returning appointments by week
+     * @return returns observable array list of appointments by current week
+     */
     public static ObservableList<Appointments> getByWeek(){
         ObservableList<Appointments> weekList = FXCollections.observableArrayList();
         try{
@@ -75,6 +85,11 @@ public class DBAppointments {
         return weekList;
     }
 
+    /**
+     * Takes ID returns associated appointments
+     * @param customerID is the ID to grab associated appointments
+     * @return returns list of appointments associated with provided customer ID
+     */
     public static ObservableList<Appointments> getApptByID(int customerID){
         ObservableList<Appointments> apptList =FXCollections.observableArrayList();
 
@@ -108,6 +123,11 @@ public class DBAppointments {
         return apptList;
     }
 
+    /**
+     * grabs all appointments by User ID
+     * @param userId is the ID to grab appointments
+     * @return returns observable list of appointments associated with provided user ID
+     */
     public static ObservableList<Appointments> getAllAppointments(int userId){
         ObservableList<Appointments> apptList = FXCollections.observableArrayList();
 
@@ -141,6 +161,11 @@ public class DBAppointments {
         return apptList;
     }
 
+    /**
+     * grabs appointments by contact
+     * @param contact is contact used to grab associated appointments
+     * @return returns observable list of appointments associated with provided contacts
+     */
     public static ObservableList<Appointments> getContactAppointments(Contacts contact){
         ObservableList<Appointments> apptList = FXCollections.observableArrayList();
 
@@ -173,6 +198,10 @@ public class DBAppointments {
         return apptList;
     }
 
+    /**
+     * Method for grabbing types from appointment table in database
+     * @return returns observable list of appointments types
+     */
     public static ObservableList<String> getAppointmentTypes(){
         ObservableList<String> apptList = FXCollections.observableArrayList();
 

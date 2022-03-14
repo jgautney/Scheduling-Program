@@ -18,6 +18,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the customer form
+ */
 public class customerForm implements Initializable {
 
     public Button addButton;
@@ -33,6 +36,9 @@ public class customerForm implements Initializable {
     public TableColumn divisionCol;
     public TableView customerDataTable;
 
+    /**
+     * Populates the customer table view with all customer records
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -46,7 +52,9 @@ public class customerForm implements Initializable {
 
     }
 
-
+    /**
+     * Moves to the add customer form
+     */
     public void onAdd(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/addCustomerForm.fxml"));
@@ -59,6 +67,11 @@ public class customerForm implements Initializable {
         }
     }
 
+    /**
+     * Moves to the update customer screen. Stores selected customer in a variable to move data to the update screen.
+     *
+     * throws error message if no customer is selected
+     */
     public void onUpdate(ActionEvent actionEvent) {
         try {
 
@@ -83,6 +96,14 @@ public class customerForm implements Initializable {
         }
     }
 
+    /**
+     * Method for deleting a customer. Displays conformation box as appointments with customer will also need
+     * to be deleted according to database integrity rules.
+     *
+     * When user selects yes, deletes customer and all associated appointments
+     *
+     * Throws error message if no customer is selected when button is pressed
+     */
     public void onDelete(ActionEvent actionEvent) {
 
         Customers customer = (Customers) customerDataTable.getSelectionModel().getSelectedItem();
@@ -110,6 +131,9 @@ public class customerForm implements Initializable {
         }
     }
 
+    /**
+     * Displays appointment form when selected
+     */
     public void onSelect(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentForm.fxml"));
@@ -122,6 +146,9 @@ public class customerForm implements Initializable {
         }
     }
 
+    /**
+     * Method for deleting appointments of associated customer
+     */
     public void removeAppointments() {
         Customers customer = (Customers) customerDataTable.getSelectionModel().getSelectedItem();
         try {
@@ -133,6 +160,9 @@ public class customerForm implements Initializable {
         }
     }
 
+    /**
+     * method for deleting customer
+     */
     public void removeCustomers(){
         Customers customer = (Customers) customerDataTable.getSelectionModel().getSelectedItem();
         try{

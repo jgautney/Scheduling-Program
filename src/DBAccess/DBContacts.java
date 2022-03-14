@@ -9,7 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Database access class for contacts
+ */
 public class DBContacts {
+
+    /**
+     * Method for getting all contacts
+     * @return returns observable list of all contacts
+     */
     public static ObservableList<Contacts> getAllContacts(){
         ObservableList<Contacts> contactList = FXCollections.observableArrayList();
 

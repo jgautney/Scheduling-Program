@@ -20,6 +20,10 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for appointment form
+ */
+
 public class appointmentForm implements Initializable {
     public Button addButton;
     public Button updateButton;
@@ -40,6 +44,9 @@ public class appointmentForm implements Initializable {
     public RadioButton monthRadButton;
     public Button reportButton;
 
+    /**
+     *Populates the table with appointments, defaults to appointments in the current month
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -56,6 +63,9 @@ public class appointmentForm implements Initializable {
 
     }
 
+    /**
+     * Switches between appointment form and customer form
+     */
     public void onSelect(ActionEvent actionEvent) {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/View/customerForm.fxml"));
@@ -69,6 +79,9 @@ public class appointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Moves to the add appointment form when selected
+     */
     public void onAdd(ActionEvent actionEvent) {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/View/addAppointmentForm.fxml"));
@@ -82,6 +95,11 @@ public class appointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Moves to the update appointment screen when selected. Saves selected appointment to variable in order to pass the information to the update screen.
+     *
+     * throws error message if button is pushed but no appointment is selected
+     */
     public void onUpdate(ActionEvent actionEvent) {
         try{
             Appointments selectedAppointment = (Appointments)appointmentDataTable.getSelectionModel().getSelectedItem();
@@ -106,6 +124,9 @@ public class appointmentForm implements Initializable {
         }
     }
 
+    /**
+     * method for deleting selected appointment. Throws error message if no appointment is selected when button is pressed
+     */
     public void onDelete(ActionEvent actionEvent) {
         try{
             Appointments appointment = (Appointments) appointmentDataTable.getSelectionModel().getSelectedItem();
@@ -141,6 +162,9 @@ public class appointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Method to populate appointment table view by current week when the week radio button is selected
+     */
     public void byWeek(ActionEvent actionEvent) {
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -154,7 +178,11 @@ public class appointmentForm implements Initializable {
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
         appointmentDataTable.setItems(DBAppointments.getByWeek());
     }
-
+    /**
+     * Method to populate appointment table view by current month when the month radio button is selected.
+     *
+     * Month is elected by default
+     */
     public void byMonth(ActionEvent actionEvent) {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -168,6 +196,9 @@ public class appointmentForm implements Initializable {
         appointmentDataTable.setItems(DBAppointments.getByMonth());
     }
 
+    /**
+     * Method for moving to the reports page
+     */
     public void onReport(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/reports.fxml"));
         Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();

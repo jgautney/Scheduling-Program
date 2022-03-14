@@ -26,7 +26,9 @@ import java.sql.SQLException;
 import java.time.*;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller for the add appointment form
+ */
 
 public class addAppointmentForm implements Initializable {
     public TextField apptTF;
@@ -51,6 +53,21 @@ public class addAppointmentForm implements Initializable {
 
     }
 
+    /**
+     * Adds appointment to the appointment table.
+     *
+     * Lambda expression is used twice in order to limit amount code that is needed when converting time
+     * since it takes a few lines to convert each time.
+     *
+     * This method also uses a for loop with nested if statements to compare times to prevent any overlap between appointments
+     * when the customer ID is the same.
+     *
+     * Method also contains the necessary SQL to add the appointment to the appointment table in the database.
+     *
+     * Throws exceptions containing error messages when certain things happen such as overlapping appointments or empty text fields
+     *
+     * @param actionEvent activated by selecting add button
+     */
     public void onAdd(ActionEvent actionEvent) {
 
         try{
@@ -124,6 +141,10 @@ public class addAppointmentForm implements Initializable {
         }
     }
 
+    /**
+     * cancels adding an appointment and returns to the previous screen
+     * @param actionEvent cancels adding appointment
+     */
     public void onCancel(ActionEvent actionEvent) {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/View/appointmentForm.fxml"));
@@ -137,6 +158,10 @@ public class addAppointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Method for setting the value in the end combo box. sets the displayed time to 15 minutes after the time
+     * that is selected in the start combo box
+     */
     public void onStartCombo(ActionEvent actionEvent) {
 
         LocalTime displayTime = (LocalTime)startCombo.getSelectionModel().getSelectedItem();
@@ -154,6 +179,12 @@ public class addAppointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Method for populating the combo boxes. Placed here to increase readability in the initialize method.
+     *
+     * Sets the time range in the start combo box from 8 am to 10 pm.  Time is in EST to prevent setting appointments
+     * outside of business hours
+     */
     public void populateComboBoxes () {
         try {
             LocalTime start = LocalTime.of(8, 0);

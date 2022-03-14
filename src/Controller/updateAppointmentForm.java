@@ -25,6 +25,9 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for update appointment form
+ */
 public class updateAppointmentForm implements Initializable {
     public TextField apptTF;
     public TextField titleTF;
@@ -42,7 +45,9 @@ public class updateAppointmentForm implements Initializable {
 
     private static Appointments selectedAppointment = null;
 
-
+    /**
+     * Populates the text fields and combo boxes with the data that is carried over by the selectedAppointment object
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
@@ -63,7 +68,10 @@ public class updateAppointmentForm implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
+    /**
+     * cancels updating appointment and returns to previous screen
+     */
     public void onCancel(ActionEvent actionEvent) {
         try{
 
@@ -78,6 +86,21 @@ public class updateAppointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Updates appointment in the appointment table.
+     *
+     * Lambda expression is used twice in order to limit amount code that is needed when converting time
+     * since it takes a few lines to convert each time.
+     *
+     * This method also uses a for loop with nested if statements to compare times to prevent any overlap between appointments
+     * when the customer ID is the same.
+     *
+     * Method also contains the necessary SQL to update the appointment in the appointment table in the database.
+     *
+     * Throws exceptions containing error messages when certain things happen such as overlapping appointments or empty text fields
+     *
+     * @param actionEvent activated by selecting add button
+     */
     public void onUpdate(ActionEvent actionEvent) {
         try{
             LocalTime startTime = (LocalTime) startCombo.getSelectionModel().getSelectedItem();
@@ -147,10 +170,19 @@ public class updateAppointmentForm implements Initializable {
             alert.show();
         }
     }
+
+    /**
+     * method used for carrying data of the selected appointment from the previous screen
+     * @param sa is the selected appointment
+     */
     public static void updateAppointment(Appointments sa) {
         selectedAppointment = sa;
     }
 
+    /**
+     * displays the time in the end combo box offset by 15 minutes from the time set in the start combo box
+     * @param actionEvent
+     */
     public void onStartCombo(ActionEvent actionEvent) {
         LocalTime displayTime = (LocalTime)startCombo.getSelectionModel().getSelectedItem();
         displayTime = displayTime.plusMinutes(15);
@@ -166,6 +198,9 @@ public class updateAppointmentForm implements Initializable {
         }
     }
 
+    /**
+     * Method used to reduce code in the initialize method
+     */
     public void populateComboBoxes () {
         try {
 

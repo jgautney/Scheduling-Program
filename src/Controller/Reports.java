@@ -26,6 +26,9 @@ import java.sql.SQLException;
 import java.time.Month;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for reports form
+ */
 public class Reports implements Initializable {
     public ComboBox contactCombo;
     public ComboBox monthCombo;
@@ -44,6 +47,11 @@ public class Reports implements Initializable {
     public TableColumn custIDCol;
     public TableView contactDataTable;
 
+    /**
+     * Sets items for the contact appointment schedule table view depending on which contact ID is selected in combo box
+     *
+     * a lambda expression is used to count total number of customers and reduce the amount of code and methods needed
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -71,19 +79,33 @@ public class Reports implements Initializable {
 
     }
 
+    /**
+     * Gets the appointments for the associated contact that is chosen in the combo box
+     */
     public void onContactSelect(ActionEvent actionEvent) {
         contactDataTable.setItems(DBAppointments.getContactAppointments((Contacts) contactCombo.getSelectionModel().getSelectedItem()));
     }
 
+    /**
+     * sets the items in the type combo box once a month is selected
+     * @param actionEvent
+     */
     public void onMonth(ActionEvent actionEvent) {
         typeCombo.setItems(DBAppointments.getAppointmentTypes());
     }
 
+    /**
+     * Once a type is selected, sets text in monthTypeLabel appropriately
+     * @param actionEvent
+     */
     public void onType(ActionEvent actionEvent) {
         monthtypeLabel.setText(getNumAppointments());
 
     }
 
+    /**
+     * returns to the previous screen
+     */
     public void onBack(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentForm.fxml"));
         Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
@@ -92,6 +114,9 @@ public class Reports implements Initializable {
         stage.show();
     }
 
+    /**
+     * Populates the month combo box with all months of the year
+     */
     public void populateMonthComboBox(){
         try{
             ObservableList<Month> months = FXCollections.observableArrayList();
@@ -114,6 +139,12 @@ public class Reports implements Initializable {
         }
     }
 
+    /**
+     * Gets all appointment that meets the criteria set by the month and type combo boxes
+     *
+     * @return returns a string of the value count, which is the total number of appointments
+     * by the type and month selected
+     */
     public String getNumAppointments(){
         int count = 0;
 
