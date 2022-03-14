@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class appointmentForm implements Initializable {
@@ -108,18 +109,35 @@ public class appointmentForm implements Initializable {
     public void onDelete(ActionEvent actionEvent) {
         try{
             Appointments appointment = (Appointments) appointmentDataTable.getSelectionModel().getSelectedItem();
-            String sql = "DELETE FROM appointments where Appointment_ID LIKE " + appointment.getId();
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ps.executeUpdate();
-            if(weekRadButton.isSelected()){
-                appointmentDataTable.setItems(DBAppointments.getByWeek());
+            if(appointment == null){
+                throw new Exception();
             }
-            else{
-                appointmentDataTable.setItems(DBAppointments.getByMonth());
+            else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setContentText("Are you sure?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                    String sql = "DELETE FROM appointments where Appointment_ID LIKE " + appointment.getId();
+                PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+                ps.executeUpdate();
+                if (weekRadButton.isSelected()) {
+                    appointmentDataTable.setItems(DBAppointments.getByWeek());
+                } else {
+                    appointmentDataTable.setItems(DBAppointments.getByMonth());
+                 }
+                }
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setContentText("Please select an appointment to delete!");
+            alert.showAndWait();
         }
     }
 
